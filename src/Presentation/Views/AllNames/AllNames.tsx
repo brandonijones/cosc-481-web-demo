@@ -1,23 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
-import { db } from '../../../Data/DataSource/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { FC, useEffect } from 'react';
+import useViewModel from './ViewModel';
 
 export const AllNames: FC = () => {
-    const [users, setUsers] = useState<Array<object>>([]);
-    const usersCollectionRef = collection(db, "users");
+    const { users, getUsers } = useViewModel();
 
     useEffect(() => {
-        const getUsers = async () => {
-            const data = await getDocs(usersCollectionRef);
-            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        };
-
         getUsers();
     }, []);
 
     return (
         <div>
-            { users.map((user: any) => {
+            { users.map((user) => {
                 return (
                     <div>
                         <p> {user.name} </p>

@@ -1,30 +1,21 @@
-import { FC, useEffect, useState } from 'react';
-import { db } from '../../../Data/DataSource/firebase';
-import { collection, getDocs, addDoc } from "firebase/firestore";
-import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import useViewModel from './ViewModel';
 
 export const Home: FC = () => {
-  
-    const navigate = useNavigate();
-    const [newName, setNewName] = useState("")
-    const [users, setUsers] = useState("")
-    const usersCollectionRef = collection(db, "users")
+    const { createUser, onChange } = useViewModel();
 
-    const createUser = async () => {
-        await addDoc(usersCollectionRef, {name: newName}).then((docRef) => {
-            // console.log(docRef.id);
-            navigate(`/hello/${docRef.id}`);
-        });
-    };
+    const createUserAndNavigate = () => {
+        createUser();
+    }
 
     return (
         <div>
-            <input placeholder="Name" 
-            onChange={(event) => {
-                setNewName(event.target.value);
-            }}/>
+            <input 
+                placeholder="Name" 
+                onChange={(event) => onChange(event.target.value) }
+            />
 
-            <button onClick={createUser}> Add Name </button>
+            <button onClick={createUserAndNavigate}> Add Name </button>
          
         </div>
     );
