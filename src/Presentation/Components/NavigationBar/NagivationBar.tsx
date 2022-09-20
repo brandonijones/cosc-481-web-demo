@@ -12,6 +12,8 @@ export const NavigationBar: FC = () => {
 
                 <Link to='/all-names'>All Names</Link>
                 {/* <a href="/all-names">[All Names (a tag)]</a> */}
+
+                <Link to='/download'>Download</Link>
             </nav>
 
             <Outlet />

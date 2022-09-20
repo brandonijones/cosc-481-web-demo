@@ -4,6 +4,7 @@ import { NavigationBar } from './Presentation/Components/NavigationBar/Nagivatio
 import { Home } from './Presentation/Views/Home/Home';
 import { HelloName } from './Presentation/Views/HelloName/HelloName';
 import { AllNames } from './Presentation/Views/AllNames/AllNames';
+import { Download } from './Presentation/Views/Download/Download';
 
 import './App.css';
 
@@ -15,6 +16,7 @@ const App: FC = () => {
           <Route index element={ <Home /> } />
           <Route path='/hello/:id' element={ <HelloName /> } />
           <Route path='/all-names' element={ <AllNames /> } />
+          <Route path='/download' element={ <Download /> } />
         </Route>
       </Routes>
     </BrowserRouter>
